@@ -57,8 +57,8 @@ public class MemberDao extends DAO {
 
 	
 	public int insert(MemberVo vo) {
-		String sql = "INSERT INTO MEMBER(MEMBERID,MEMBERNAME,MEMBERPASSWORD,MEMBERTEL, MEMBERMAUTH) "
-				+ "VALUES(?, ?, ?, ? ,?)";
+		String sql = "INSERT INTO MEMBER(MEMBERID,MEMBERNAME,MEMBERPASSWORD,MEMBERTEL) "
+				+ "VALUES(?, ?, ?, ?)";
 		int n = 0;
 		try {
 			psmt = conn.prepareStatement(sql);
@@ -66,7 +66,6 @@ public class MemberDao extends DAO {
 			psmt.setString(2, vo.getMembername());
 			psmt.setString(3, vo.getMemberpassword());
 			psmt.setString(4, vo.getMembertel());
-			psmt.setString(5, vo.getMembermauth());
 			n = psmt.executeUpdate();
 		}catch(SQLException e) {
 			e.printStackTrace();
@@ -104,4 +103,23 @@ public class MemberDao extends DAO {
 			e.printStackTrace();
 		}
 	}
+	
+	public boolean isidCheck(String id) {
+		boolean bool = true;
+		String sql = "SELECT MEMBERID FROM MEMBER WHERE MEMBERID = ?";
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, id);
+			rs = psmt.executeQuery();
+			if(rs.next()) {
+				bool = false;
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close();
+		}
+		return bool;
+	}
 }
+

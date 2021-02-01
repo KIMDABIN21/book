@@ -11,8 +11,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import co.micol.book.web.BookBorrowForm;
+import co.micol.book.web.IdCheck;
 import co.micol.book.web.Login;
 import co.micol.book.web.LoginForm;
+import co.micol.book.web.Logout;
+import co.micol.book.web.MemberJoin;
+import co.micol.book.web.MemberJoinForm;
 
 
 
@@ -31,7 +36,12 @@ public class FrontController extends HttpServlet {
 	public void init(ServletConfig config) throws ServletException {
 		map.put("/main.do", new MainService());
 		map.put("/loginForm.do", new LoginForm()); 
-		map.put("/login.do", new Login()); //로그인 호출
+		map.put("/login.do", new Login()); 
+		map.put("/logout.do", new Logout()); 
+		map.put("/memberJoinForm.do", new MemberJoinForm()); 
+		map.put("/memberJoin.do", new MemberJoin()); 
+		map.put("/idCheck.do", new IdCheck()); 		
+		map.put("/borrowForm.do", new BookBorrowForm());
 	}
 
 	protected void service(HttpServletRequest request, HttpServletResponse response)
@@ -43,8 +53,9 @@ public class FrontController extends HttpServlet {
 		
 		
 		Command command = map.get(path); // 요청한 것을 처리하는 command를 찾아준다.
+
 		String viewPage = command.excute(request, response); // 처리한 후 결과를 돌려줄 Page 값을 받음.
-		
+
 		if(!viewPage.endsWith(".do")) viewPage = "/WEB-INF/views/" + viewPage + ".jsp";
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);

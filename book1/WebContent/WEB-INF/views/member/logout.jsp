@@ -4,13 +4,14 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>로그인 성공</title>
+<title>Insert title here</title>
 </head>
 <jsp:include page="../common/menu.jsp" />
 <body>
 <div align="center">
-<h3>${vo.membername } 님 로그인에 성공했습니다.</h3>
-<h3>${vo.membermauth } 권한을 갖습니다.</h3>
+<h3>${memberid } 님 정상적으로 로그아웃 되었습니다.</h3>
+<button type="button" onclick="location.href='main.do'">홈</button>
 </div>
+
 </body>
 </html>

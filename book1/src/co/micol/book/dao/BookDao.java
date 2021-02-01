@@ -15,29 +15,24 @@ public class BookDao extends DAO {
 
 	public ArrayList<BookVo> bookSelectList() { // 전체 도서 리스트
 		ArrayList<BookVo> list = new ArrayList<BookVo>();
-		BookVo vo = new BookVo();
-
-		String sql = "SELECT * FROM BOOK";
-
+		BookVo vo;
+		String sql = "SELECT * FROM BOOK ORDER BY 1";
 		try {
 			psmt = conn.prepareStatement(sql);
 			psmt.executeQuery();
 			while (rs.next()) {
 				vo = new BookVo();
-				vo.setBookname(rs.getString("bookname"));
 				vo.setBookcode(rs.getString("bookcode"));
+				vo.setBookname(rs.getString("bookname"));
 				vo.setQuantity(rs.getInt("quantity"));
 				vo.setBcount(rs.getInt("bcount"));
-
 				list.add(vo);
 			}
-
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			close();
 		}
-
 		return list;
 	}
 
