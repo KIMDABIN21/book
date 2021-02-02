@@ -58,7 +58,7 @@ public class BookDao extends DAO {
 		return vo;
 	}
 
-	public int bookInsert(BookVo vo) { // 희망도서 신청? 등록?
+	public int bookInsert(BookVo vo) { 
 		int n = 0;
 		String sql = "INSERT INTO BOOK (BOOKCODE, BOOKNAME) VALUES (?, ?)";
 		try {

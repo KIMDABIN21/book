@@ -49,18 +49,21 @@
 					<li><a class="menuLink" href="loginForm.do">Login</a></li>
 					<li>|</li>
 				    <li><a class="menuLink" href="memberJoinForm.do">회원가입</a></li>
+				    <li><a class="menuLink" href="loginForm.do">도서대여</a></li>
+				<li>|</li>
+				<li><a class="menuLink" href="loginForm.do">도서반납</a></li>
 				</c:if>
 				<c:if test="${membermauth == 'USER' }">
 				<li><a class="menuLink" href="bookList.do">도서대여</a></li>
 				<li>|</li>
-				<li><a class="menuLink" href="#">도서반납</a></li>
+				<li><a class="menuLink" href="bookReturnForm.do">도서반납</a></li>
 				</c:if>
 				<c:if test="${membermauth == 'SYS' }">
 				<li><a class="menuLink" href="#">도서등록</a></li>
 				<li>|</li>
 				<li><a class="menuLink" href="#">대여관리</a></li>
 				<li>|</li>
-				<li><a class="menuLink" href="#">회원관리</a></li>
+				<li><a class="menuLink" href="memberSet.do">회원관리</a></li>
 				</c:if>
 				<c:if test="${memberid ne null }" >
 				<li>|</li>
