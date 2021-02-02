@@ -51,7 +51,7 @@
 				    <li><a class="menuLink" href="memberJoinForm.do">회원가입</a></li>
 				</c:if>
 				<c:if test="${membermauth == 'USER' }">
-				<li><a class="menuLink" href="borrowForm.do">도서대여</a></li>
+				<li><a class="menuLink" href="bookList.do">도서대여</a></li>
 				<li>|</li>
 				<li><a class="menuLink" href="#">도서반납</a></li>
 				</c:if>

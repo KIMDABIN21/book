@@ -20,7 +20,7 @@ public class BookRentalDao extends DAO {
 
 		try {
 			psmt = conn.prepareStatement(sql);
-			psmt.executeQuery();
+			rs = psmt.executeQuery();
 			while (rs.next()) {
 				vo.setRentaldate(rs.getDate("rentaldate"));
 				vo.setBookcode(rs.getString("bookcode"));
@@ -44,7 +44,7 @@ public class BookRentalDao extends DAO {
 		try {
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, vo.getMemberid());
-			psmt.executeQuery();
+			rs = psmt.executeQuery();
 			if (rs.next()) {
 				vo.setRentaldate(rs.getDate("rentaldate"));
 				vo.setBookcode(rs.getString("bookcode"));

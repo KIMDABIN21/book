@@ -19,7 +19,7 @@ public class BookDao extends DAO {
 		String sql = "SELECT * FROM BOOK ORDER BY 1";
 		try {
 			psmt = conn.prepareStatement(sql);
-			psmt.executeQuery();
+			rs = psmt.executeQuery();
 			while (rs.next()) {
 				vo = new BookVo();
 				vo.setBookcode(rs.getString("bookcode"));
@@ -41,7 +41,7 @@ public class BookDao extends DAO {
 		try {
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, vo.getBookcode());
-			psmt.executeQuery();
+			rs = psmt.executeQuery();
 			if (rs.next()) {
 				vo = new BookVo();
 				vo.setBookname(rs.getString("bookname"));
