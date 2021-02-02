@@ -1,8 +1,5 @@
 package co.micol.book.web;
 
-
-import java.util.ArrayList;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -10,18 +7,18 @@ import co.micol.book.dao.MemberDao;
 import co.micol.book.vo.MemberVo;
 import co.micol.common.Command;
 
-public class MemberSet implements Command {
+public class MemberEditForm implements Command {
 
 	@Override
 	public String excute(HttpServletRequest request, HttpServletResponse response) {
-	    //멤버 목록 폼 돌려주기
-		
 		MemberDao dao = new MemberDao();
-		ArrayList<MemberVo> list = new ArrayList<MemberVo>();
-		list = dao.selectList();
+		MemberVo vo = new MemberVo();
+		vo.setMemberid(request.getParameter("memberid"));
 		
-		request.setAttribute("list", list); 
-		return "member/memberList";
+		vo = dao.login(vo);
 		
+		request.setAttribute("vo", vo);
+		return "member/memberEditForm";
 	}
+
 }

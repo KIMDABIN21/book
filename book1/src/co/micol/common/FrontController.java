@@ -19,6 +19,9 @@ import co.micol.book.web.IdCheck;
 import co.micol.book.web.Login;
 import co.micol.book.web.LoginForm;
 import co.micol.book.web.Logout;
+import co.micol.book.web.MemberDelete;
+import co.micol.book.web.MemberEdit;
+import co.micol.book.web.MemberEditForm;
 import co.micol.book.web.MemberJoin;
 import co.micol.book.web.MemberJoinForm;
 import co.micol.book.web.MemberSet;
@@ -53,7 +56,10 @@ public class FrontController extends HttpServlet {
 		map.put("/bookReturnForm.do", new BookReturnForm()); 
 		map.put("/bookReturn.do", new BookReturn());
 		
-		map.put("memberSet.do", new MemberSet());
+		map.put("/memberSet.do", new MemberSet());
+		map.put("/memberDelete.do", new MemberDelete());
+		map.put("/memberEditForm.do", new MemberEditForm());
+		map.put("/memberEdit.do", new MemberEdit());
 	}
 
 	protected void service(HttpServletRequest request, HttpServletResponse response)

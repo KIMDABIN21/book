@@ -7,6 +7,7 @@ tr.row:hover {
 	background-color: lightyellow
 }
 </style>
+
 <jsp:include page="../common/menu.jsp" />
 
 <!-- Page content -->
@@ -43,6 +44,5 @@ tr.row:hover {
 		</c:choose>
 	</table>
 </div>
-</head>
 </body>
 </html>
