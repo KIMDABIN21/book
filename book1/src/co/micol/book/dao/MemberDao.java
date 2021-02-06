@@ -45,8 +45,12 @@ public class MemberDao extends DAO {
 			psmt.setString(2, vo.getMemberpassword());
 			rs=psmt.executeQuery();
 			if(rs.next()) {
-				vo.setMembermauth(rs.getString("membermauth"));
+				vo.setMemberid(rs.getString("memberid"));
 				vo.setMembername(rs.getString("membername"));
+				vo.setMemberpassword(rs.getString("memberpassword"));
+				vo.setMembertel(rs.getString("membertel"));
+				vo.setMemberaddress(rs.getString("memberaddress"));
+				vo.setMembermauth(rs.getString("membermauth"));
 			}
 		}catch(SQLException e) {
 			e.printStackTrace();
@@ -68,6 +72,31 @@ public class MemberDao extends DAO {
 			psmt.setString(3, vo.getMemberpassword());
 			psmt.setString(4, vo.getMembertel());
 			n = psmt.executeUpdate();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close();
+		}
+		return n;
+	}
+	
+	public int update(MemberVo vo) {
+		//여기에 변경(수정) 작업을 쓴다. 권한, 패스워드만 변경한다. 앞으로는 업데이트 구문을 나누어서 써준다.
+		int n = 0;
+		String sql = null;
+		if(vo.getMemberpassword() != null) {
+			sql = "UPDATE MEMBER SET MEMBERPASSWORD=? WHERE MEMBERID=?";  //패스워드 변경
+		}else if(vo.getMembertel() != null) {
+			sql = "UPDATE MEMBER SET MEMBERMAUTH=? WHERE MEMBERID=?"; //권한 변경
+		}
+		try { // sql구문이 두개이기 때문에 try catch 구문도 두개.
+			psmt =  conn.prepareStatement(sql);
+			if(vo.getMemberpassword() != null)
+			    psmt.setString(1, vo.getMemberpassword());  // 패스워드 변경 될 때
+			else
+				psmt.setString(1, vo.getMembermauth());  // 권한 변경 될 때 
+			    psmt.setString(2, vo.getMemberid());
+			    n = psmt.executeUpdate();
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}finally {

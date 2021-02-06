@@ -12,7 +12,7 @@ import co.micol.book.vo.BookVo;
 import co.micol.common.Command;
 
 
-public class BookBorrowForm implements Command {
+public class BookList implements Command {
 
 	@Override
 	public String excute(HttpServletRequest request, HttpServletResponse response) {
@@ -23,7 +23,7 @@ public class BookBorrowForm implements Command {
 		list = dao.bookSelectList();
 		
 		request.setAttribute("list", list); 
-		return "book/bookBorrowForm";
+		return "book/bookList";
 	}
 
 }
