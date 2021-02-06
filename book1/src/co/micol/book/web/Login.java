@@ -23,12 +23,12 @@ public class Login implements Command {
 		String viewPage = null;
 		
 		
-		if(vo.getMembermauth() != null) {
+		if(vo.getMembermauth() != null ) {
 			HttpSession session= request.getSession(); //세션객체 호출
 			session.setAttribute("memberid", vo.getMemberid()); //세션에 아이디
 			session.setAttribute("membermauth", vo.getMembermauth()); //세션에 권한을 담는다.
 			request.setAttribute("vo", vo);
-			viewPage = "member/loginSuccess";
+			viewPage = "main.do";
 		}else {
 			viewPage = "member/loginFail";
 		}

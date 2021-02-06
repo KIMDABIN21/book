@@ -38,10 +38,11 @@ public class MemberDao extends DAO {
 	}
 	
 	public MemberVo login(MemberVo vo) { // 한명의 데이터를 검색한다.
-		String sql = "SELECT * FROM MEMBER WHERE MEMBERID =? ";
+		String sql = "SELECT * FROM MEMBER WHERE MEMBERID =? AND MEMBERPASSWORD = ?";
 		try {
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, vo.getMemberid());
+			psmt.setString(2, vo.getMemberpassword());
 			rs=psmt.executeQuery();
 			if(rs.next()) {
 				vo.setMembermauth(rs.getString("membermauth"));
@@ -121,5 +122,22 @@ public class MemberDao extends DAO {
 		}
 		return bool;
 	}
+
+
+public boolean loginCheck(String id, String pwd) {
+	boolean bool = true;
+	String sql = "SELECT MEMBERID FROM MEMBER WHERE MEMBERID = ? AND MEMBERPASSWORD = ?";
+	try {
+		psmt = conn.prepareStatement(sql);
+		psmt.setString(1, id);
+		psmt.setString(2, pwd);
+		rs = psmt.executeQuery();
+	}catch(SQLException e) {
+		e.printStackTrace();
+	}finally {
+		close();
+	}
+	return bool;
+       }
 }
 
